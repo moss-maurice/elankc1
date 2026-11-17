@@ -1,0 +1,4 @@
+# Build output: modules, scripts, checksums. Never commit.
+build/
+# Leftover package dir from earlier layout.
+dist/
