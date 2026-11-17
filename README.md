@@ -1,4 +1,4 @@
-# elankc1
+# Elankc1
 
 Тач для **PocketBook 740** (InkPad 3) и **740 Pro** (InkPad 3 Pro) с экраном **ED078KC1** (KC1).
 
@@ -20,26 +20,37 @@
 
 Пока это не решено: сохраните родную панель, если на ней ещё живой тач (на всякий случай), либо **больше не обновляйте прошивку**.
 
-## Что нужно перед установкой
+## Подготовка
 
-1. Jailbreak **[pbjb](https://github.com/ezdiy/pbjb)** ([готовые файлы](https://github.com/ezdiy/pbjb/releases), v8). Два `.app` в `applications` → **`@Jailbreak`**, затем **`@Services`**. Без этого нет SSH и нельзя подменить модули тача.
-2. USB на книге в режиме **«Зарядка»**, не «Связь с ПК».
-3. Пакет из [Releases](https://github.com/moss-maurice/elankc1/releases) **или** своя сборка (ниже). Внутри `.ko` и скрипты — они должны лежать в одной папке.
+Без jailbreak нет SSH и нельзя подменить модули тача.
+
+### Jailbreak
+
+1. Скачайте **[pbjb](https://github.com/ezdiy/pbjb)** v8: [готовые файлы](https://github.com/ezdiy/pbjb/releases).
+2. USB на книге = **«Связь с ПК»**. Из zip скопируйте оба `.app` в папку `applications` на книге.
+3. Безопасно отключите USB. В приложениях сначала запустите **`@Jailbreak`**, дождитесь успеха (ставится `su`). Затем **`@Services`** (SSH и остальное). Если jailbreak не встал, `@Services` просто не запустится.
+4. Перезагрузите книгу.
+
+Повторный запуск `@Jailbreak` или `@Services` снимает соответствующую часть.
+
+### SSH и пароль
+
+После перезагрузки в настройках появляется пункт **Rooted Device Settings**. Там показан сгенерированный пароль `root` — его можно сразу сменить на свой.
+
+Для подключения к SSH подключите USB и переключите на **«Зарядка»** (не «Связь с ПК»). С компьютера запустить powershell с правами администратора и выполнить команды:
+
+```text
+ssh -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa root@169.254.0.1
+```
+
+Логин `root`, пароль — тот, что в Rooted Device Settings. Если `169.254.0.1` не отвечает, IP по Wi‑Fi смотрите в Rooted Device Settings → System Status.
 
 ## Установка
 
-Одинаково для 740 и 740 Pro. С компьютера, не из SSH на книге. Распакуйте zip из [Releases](https://github.com/moss-maurice/elankc1/releases) (или возьмите `build/` после сборки).
-
-Windows:
+Одинаково для 740 и 740 Pro. Распакуйте zip из [Releases](https://github.com/moss-maurice/elankc1/releases) (или возьмите `build/` после сборки). Перейдите в каталог с файлами и выполните команду
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\install_elankc1.ps1
-```
-
-Linux:
-
-```sh
-./install_elankc1.sh
 ```
 
 Пароль SSH спрашивается дважды. Дождитесь `[ok]  setup complete`. Книга сама **не** перезагрузится.
@@ -48,7 +59,7 @@ Linux:
 
 Если книга уже зависла на логотипе с воткнутым KC1 — выньте шлейф, зажмите питание примерно на 30 секунд, дождитесь стола, затем ставьте драйвер как выше.
 
-### Снять драйвер
+### Откат
 
 Шлейф KC1 **вынуть**, иначе книга снова зависнет на логотипе:
 
@@ -56,18 +67,10 @@ Linux:
 powershell -ExecutionPolicy Bypass -File .\uninstall_elankc1.ps1
 ```
 
-```sh
-./uninstall_elankc1.sh
-```
-
 Если раньше стояла старая версия с другими именами файлов:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\restore_factory.ps1
-```
-
-```sh
-./restore_factory.sh
 ```
 
 Если всё же обновляете ПО: сначала верните родную панель с живым тачем, снимите jailbreak (`@Jailbreak` / `@Services`) и ставьте только свою линейку — на 740 `U740`, на Pro `U740-2`. Иначе апдейт может зациклиться, а без тача патч заново не накатить.
