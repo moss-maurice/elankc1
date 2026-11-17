@@ -1,4 +1,4 @@
-# elankc1
+# Elankc1
 
 Тач для **PocketBook 740** (InkPad 3) и **740 Pro** (InkPad 3 Pro) с экраном **ED078KC1** (KC1).
 
