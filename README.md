@@ -2,6 +2,8 @@
 
 Тач для **PocketBook 740** (InkPad 3) и **740 Pro** (InkPad 3 Pro) с экраном **ED078KC1** (KC1).
 
+Готовые собранные файлы (`.ko` и скрипты) — в разделе [Releases](https://github.com/moss-maurice/elankc1/releases).
+
 ## Зачем это нужно
 
 У обеих книг родной экран — KH4, тач Cypress. Прошивка умеет только его.
@@ -22,11 +24,11 @@
 
 1. Jailbreak **[pbjb](https://github.com/ezdiy/pbjb)** ([готовые файлы](https://github.com/ezdiy/pbjb/releases), v8). Два `.app` в `applications` → **`@Jailbreak`**, затем **`@Services`**. Без этого нет SSH и нельзя подменить модули тача.
 2. USB на книге в режиме **«Зарядка»**, не «Связь с ПК».
-3. Пакет со [страницы Releases](../../releases) **или** своя сборка (ниже). Внутри `.ko` и скрипты — они должны лежать в одной папке.
+3. Пакет из [Releases](https://github.com/moss-maurice/elankc1/releases) **или** своя сборка (ниже). Внутри `.ko` и скрипты — они должны лежать в одной папке.
 
 ## Установка
 
-Одинаково для 740 и 740 Pro. С компьютера, не из SSH на книге. Распакуйте zip релиза (или возьмите `build/` после сборки).
+Одинаково для 740 и 740 Pro. С компьютера, не из SSH на книге. Распакуйте zip из [Releases](https://github.com/moss-maurice/elankc1/releases) (или возьмите `build/` после сборки).
 
 Windows:
 
